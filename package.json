@@ -1,23 +1,33 @@
 {
-  "name": "api_typescript",
+  "name": "api_ts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --watch src src/index.ts",
-    "start": "node build/index.js",
+    "dev": "nodemon ./src/app.ts",
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MEZLYSO/API_TS.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MEZLYSO/API_TS/issues"
+  },
+  "homepage": "https://github.com/MEZLYSO/API_TS#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.9"
+  },
   "devDependencies": {
     "@types/express": "^5.0.1",
-    "typescript": "5.8.2"
-  },
-  "dependencies": {
-    "express": "4.21.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
   }
 }
