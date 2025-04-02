@@ -26,6 +26,25 @@ class UserService {
     }
     return null;
   }
+
+  async editUser(data: User, id: number): Promise<User | null> {
+    const user = await db.query<ResultSetHeader>(
+      "UPDATE users SET NAME = ? WHERE ID = ?",
+      [data.name, id],
+    );
+    if (user.affectedRows) {
+      return await this.getUserById(id);
+    }
+    return null;
+  }
+
+  async deleteUser(id: number): Promise<Boolean> {
+    const user = await db.query<ResultSetHeader>(
+      "DELETE FROM users WHERE ID = ?",
+      id,
+    );
+    return user.affectedRows > 0;
+  }
 }
 
 export default new UserService();

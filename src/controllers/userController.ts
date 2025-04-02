@@ -29,13 +29,41 @@ class UserController {
   async postUser(req: Request, res: Response) {
     try {
       const data = req.body;
-      console.log(data);
 
       const user = await userService.insertUser(data);
       if (user) {
         sendSucess(res, user);
       } else {
         sendError(res, "User not create", 500);
+      }
+    } catch (error: any) {
+      sendError(res, error.message);
+    }
+  }
+
+  async putUser(req: Request, res: Response) {
+    try {
+      const data = req.body;
+      const id = Number(req.params["id"]);
+      const user = await userService.editUser(data, id);
+      if (user) {
+        sendSucess(res, user);
+      } else {
+        sendError(res, "User not edit", 500);
+      }
+    } catch (error: any) {
+      sendError(res, error.message);
+    }
+  }
+
+  async deleteUser(req: Request, res: Response) {
+    try {
+      const id = Number(req.params["id"]);
+      const deleted = await userService.deleteUser(id);
+      if (deleted) {
+        sendSucess(res, {});
+      } else {
+        sendError(res, "User not found");
       }
     } catch (error: any) {
       sendError(res, error.message);
